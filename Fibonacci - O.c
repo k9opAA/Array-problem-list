@@ -2,7 +2,7 @@
 
 int main() {
     int N;
-    scanf("%d", &N); // Read the value of N
+    scanf("%d", &N);
 
     int fib[N + 1];
     fib[1] = 0;
