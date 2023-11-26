@@ -1,32 +1,40 @@
 #include <stdio.h>
 
 int main() {
-    int N;
-    scanf("%d", &N);
+    int n;
+    scanf("%d", &n);
 
-    int A[N];
-    for (int i = 0; i < N; i++) {
-        scanf("%d", &A[i]);
+    int a[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
     }
 
-    int maxOperations = 0;
-    int allEven = 1;
+    int max_operations = 0;
+    int current_operation = 0;
+    int can_perform_operation = 1;
 
-    for (int i = 0; i < N; i++) {
-        while (A[i] % 2 == 0) {
-            A[i] /= 2;
+    while (can_perform_operation) {
+        current_operation++;
+
+        // Check if all numbers are even
+        for (int i = 0; i < n; i++) {
+            if (a[i] % 2 != 0) {
+                can_perform_operation = 0;
+                break;
+            }
         }
-        if (A[i] % 2 != 0) {
-            allEven = 0;
-            break;
+
+        if (can_perform_operation) {
+            // Perform operation
+            for (int i = 0; i < n; i++) {
+                a[i] /= 2;
+            }
+
+            max_operations = current_operation;
         }
     }
 
-    if (allEven) {
-        printf("%d\n", maxOperations);
-    } else {
-        printf("0\n");
-    }
+    printf("%d\n", max_operations);
 
     return 0;
 }
